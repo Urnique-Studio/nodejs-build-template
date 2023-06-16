@@ -1,0 +1,6 @@
+version: "3.8"
+services:
+  nodejs-app:
+    container_name: nodejs-app
+    build: .
+    image: ctz-game

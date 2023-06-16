@@ -1,0 +1,14 @@
+name: (CI) Merge Dev
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  test:
+    uses: ./.github/workflows/run-unit-test.yml
+
+  deploy:
+    uses: ./.github/workflows/deploy-dev.yml
+    needs: test

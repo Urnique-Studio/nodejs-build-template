@@ -1,0 +1,9 @@
+# build files
+.git
+Dockerfile
+docker-compose.yaml
+
+# node files
+.vscode
+node_modules
+.log
