@@ -17,12 +17,12 @@ on:
 
 jobs:
   build:
-    uses: Urnique-Studio/cicd-workflow/.github/workflows/create-docker-image.yml@v1.1.0
+    uses: Urnique-Studio/cicd-workflow/.github/workflows/create-docker-image.yml@v1.2.0
 
   deploy-dev:
     if: inputs.deploy_nt_dev
     needs: build
-    uses: Urnique-Studio/cicd-workflow/.github/workflows/deploy-nortezh.yml@v1.1.0
+    uses: Urnique-Studio/cicd-workflow/.github/workflows/deploy-nortezh.yml@v1.2.0
     with:
       deployment_project: <TODO>
       deployment_location: <TODO>
