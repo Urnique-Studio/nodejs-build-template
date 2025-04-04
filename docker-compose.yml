@@ -1,6 +1,6 @@
-version: "3.8"
 services:
-  nodejs-app:
-    container_name: nodejs-app
+  <TODO>:
+    container_name: <TODO>
     build: .
-    image: ctz-game
+    restart: unless-stopped
+

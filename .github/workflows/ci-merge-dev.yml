@@ -2,13 +2,20 @@ name: (CI) Merge Dev
 
 on:
   push:
+    paths:
+      - src/**
+      - package.json
+      - package-lock.json
     branches:
-      - dev
+      - main
 
 jobs:
   test:
-    uses: ./.github/workflows/run-unit-test.yml
+    uses: ./.github/workflows/manual-run-test.yml
 
   deploy:
-    uses: ./.github/workflows/deploy-dev.yml
     needs: test
+    uses: ./.github/workflows/manual-build-deploy.yml
+    secrets: inherit
+    with:
+      deploy_nt_dev: true

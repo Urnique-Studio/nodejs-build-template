@@ -1,0 +1,34 @@
+name: (Manual) Build & Deploy
+
+on:
+  # enable run manually
+  workflow_call:
+    inputs:
+      deploy_nt_dev:
+        type: boolean
+
+  # enable run manually
+  workflow_dispatch:
+    inputs:
+      deploy_nt_dev:
+        description: Deploy Nortezh Dev
+        type: boolean
+        default: true
+
+jobs:
+  build:
+    uses: Urnique-Studio/cicd-workflow/.github/workflows/create-docker-image.yml@v1.1.0
+
+  deploy-dev:
+    if: inputs.deploy_nt_dev
+    needs: build
+    uses: Urnique-Studio/cicd-workflow/.github/workflows/deploy-nortezh.yml@v1.1.0
+    with:
+      deployment_project: <TODO>
+      deployment_location: <TODO>
+      deployment_name: <TODO>
+      image_name: ${{ needs.build.outputs.image_name }}
+    secrets:
+      auth_email: ${{ secrets.STG_NTZ_SVA_EMAIL }}
+      auth_key: ${{ secrets.STG_NTZ_SVA_KEY }}
+      deployment_env: ${{ secrets.ENV_NT_DEV }}

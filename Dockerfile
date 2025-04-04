@@ -1,10 +1,11 @@
-FROM node:16.15.1-alpine3.15 as builder
+FROM node:20.18.0-alpine3.19
 
 WORKDIR /app
 
-COPY package.json package-lock.json /app/
-RUN  npm ci --only=production
+COPY package.json package-lock.json ./
+ADD src ./src
+COPY .env.* .
 
-COPY . .
+RUN npm ci --only=production
 
-CMD ["node", "/app/index.js"]
+CMD npm start
